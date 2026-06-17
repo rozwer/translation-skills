@@ -25,6 +25,25 @@ Claude Code（Desktop の Code タブ）上で運用する。
 
 ---
 
+## 入手（HTTP ダウンロード）
+
+公開URL: https://github.com/rozwer/translation-skills
+
+```bash
+# 方法1: git clone（更新を pull できる。推奨）
+git clone https://github.com/rozwer/translation-skills.git
+
+# 方法2: HTTP で zip を落とす（git 不要）
+curl -L -o translation-skills.zip \
+  https://github.com/rozwer/translation-skills/archive/refs/heads/main.zip
+unzip translation-skills.zip
+
+# 方法3: tar.gz
+curl -L https://github.com/rozwer/translation-skills/archive/refs/heads/main.tar.gz | tar xz
+```
+
+落としたフォルダを Claude Code（Desktop の Code タブ）で開けば、`.claude/skills/` のスキルがそのまま使える。
+
 ## ディレクトリ構成
 
 | 場所 | 役割 |
