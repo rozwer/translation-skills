@@ -95,6 +95,7 @@ curl -L https://github.com/rozwer/translation-skills/archive/refs/heads/main.tar
 - [x] 共通レイヤー（house-style / learnings / glossary）
 - [x] 各スキル（router / profiles ×4 / improve）
 - [x] 外部ツール採用判定・vendoring（`tools/ADOPTION.md`）
+- [x] 導入先 Claude 用の運用規範（`CLAUDE.md`）
 - [ ] ドメイン content の本格起草（SPEC §9-1・運用者の専門知識が必要）
 - [ ] 足場の実機検証（`avoid-ai-writing-ja` の日本語AI臭カバレッジ確認ほか・SPEC §9-3）
 - [ ] GitHub（private）リモート整備
