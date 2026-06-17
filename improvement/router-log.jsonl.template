@@ -1,0 +1,2 @@
+{"date": "2026-06-17", "profile": "profile-editorial", "route": "main", "confidentiality": "通常", "boundary_flag": false, "note": "成果物=広報。設問1の明示選択でマップ"}
+{"date": "2026-06-17", "profile": "profile-academic-grant", "route": "fallback", "confidentiality": "機密", "boundary_flag": true, "note": "設問1=その他。LLMが候補提示、人が学術と確定"}

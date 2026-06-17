@@ -1,0 +1,95 @@
+# =============================================================
+#  .gitignore — 翻訳支援スキルシステム
+#
+#  ★ 通常のプロジェクトと役割が違う ★
+#  普通の .gitignore は「ビルド成果物(node_modules 等)」を無視するのが主目的。
+#  本リポジトリでは【機密原稿・顧客実名・実名⇔トークン対応表】を git に
+#  乗せないことが最優先。これは情報漏洩・守秘義務違反の防止が目的。
+#
+#  迷ったら追跡しない（= 無視する）方向に倒すこと。
+#  共有リポジトリ(§7)に乗せてよいのは「匿名化済み・公開可」のものだけ。
+# =============================================================
+
+# ---- 1) 機密原稿・作業ファイル（最重要：絶対に追跡しない）----
+# クライアントから預かった原稿・下訳・納品物。原則リポジトリ外に置くが、
+# 誤って中に置いても git に乗らないよう保険をかける。
+manuscripts/
+originals/
+sources/
+drafts/
+deliverables/
+work/
+_private/
+
+# 原稿で入りがちなバイナリ/文書ファイル（管理用 .md / .txt は追跡する）
+*.docx
+*.doc
+*.pdf
+*.pptx
+*.ppt
+*.xlsx
+*.xls
+*.pages
+*.numbers
+*.key.zip
+
+# 「ローカル限定」と明示したものは常に無視
+*.local
+*.local.*
+
+# ---- 2) 実名⇔匿名トークンの対応表（§3.5）----
+# クライアント名・固有名詞の【実名】が載る。共有リポジトリに絶対に乗せない。
+glossary/*.local.json
+glossary/.client-map*
+glossary/_realnames*
+**/*client-map*
+**/*real-names*
+**/*realnames*
+
+# ---- 3) learnings の生ログ（マスキング前 / §3.5・§4）----
+# 承認・マスキング前の指摘には固有名詞が残りうる。
+# 確定版 improvement/learnings.md（匿名化済み）のみ追跡する。
+improvement/intake/
+improvement/*.raw.md
+improvement/*.draft.md
+
+# ---- 4) 検出器の生結果（原稿本文を含みうる / §6）----
+tools/detect/results/
+*.detect.json
+*.detect.txt
+
+# ---- 5) 認証情報・秘密 ----
+.env
+.env.*
+*.key
+*.pem
+*.p12
+credentials*.json
+**/secrets*
+api-keys*
+
+# ---- 6) Claude Code のローカル状態（個人環境依存・PIIを含みうる）----
+# ★ 注意: グローバル ~/.gitignore_global が .claude/ 全体を無視している。
+#   本体スキル(.claude/skills/)は会社で共有したいので、明示的に再包含する。
+#   skills 以外（状態・セッション・個人設定・PII）は追跡しない。
+!/.claude/
+/.claude/*
+!/.claude/skills/
+!/.claude/skills/**
+
+# ---- 7) 外部ツールの依存物（インストール成果物。ソースは vendoring 可）----
+node_modules/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.npm/
+package-lock.json.local
+
+# ---- 8) OS / エディタのゴミ ----
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.idea/
+.vscode/
