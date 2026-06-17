@@ -103,7 +103,19 @@ glossary/*
 !glossary/README.md
 !glossary/.gitkeep
 
-# ---- 9) OS / エディタのゴミ ----
+# 設計仕様(SPEC.md)は管理者(配布元)がローカルで保持する設計資料。
+# 配布物には含めない（運用者向けの説明は README / CLAUDE.md に集約）。
+/SPEC.md
+
+# ---- 9) 翻訳メモリ(TM) = 生の対訳データ。最高機密・ローカル限定 ----
+# learnings と違いマスキングしない（再利用価値のため）。その代わり絶対に公開・共有しない。
+# 雛形 tm/tm.example.jsonl と tm/README.md だけを配布する。
+tm/*.local.jsonl
+tm/*.local.*
+tm/*.tmx
+tm/_*.jsonl
+
+# ---- 10) OS / エディタのゴミ ----
 .DS_Store
 Thumbs.db
 *.swp

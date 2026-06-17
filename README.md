@@ -71,11 +71,12 @@
 
 | 場所 | 中身 |
 |---|---|
-| `SPEC.md` | このツールの詳しい仕様 |
 | `.claude/skills/` | ジャンル別の処理（Claude が自動で使う） |
 | `improvement/learnings.md` | 覚えたルールの記録 |
 | `glossary/` | 用語集・定訳（手元だけに保存される） |
+| `tm/` | 翻訳メモリ＝過去の対訳（手元だけに保存される） |
 
 ---
 
-> このツールを更新・配布する人向けの設計資料は [SPEC.md](./SPEC.md) と [tools/ADOPTION.md](./tools/ADOPTION.md) にあります。
+> 外部ツールの採用判定は [tools/ADOPTION.md](./tools/ADOPTION.md) を参照。
+> （設計仕様 SPEC.md は配布元の管理者が保持しています。）

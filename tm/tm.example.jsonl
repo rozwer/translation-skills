@@ -1,0 +1,2 @@
+{"date":"2026-01-01","client":"EXAMPLE_CO","domain":"医療","profile":"profile-academic-grant","source":"本研究の目的は、新規治療法の有効性を検証することである。","target":"The objective of this study is to verify the efficacy of the novel therapy.","note":"これはダミー。実データは tm.local.jsonl に保存する"}
+{"date":"2026-01-02","client":"EXAMPLE_CO","domain":"広報","profile":"profile-editorial","source":"このたびは格別のご高配を賜り、誠にありがとうございます。","target":"Thank you very much for your exceptional support.","note":"定型あいさつの例。実データではない"}

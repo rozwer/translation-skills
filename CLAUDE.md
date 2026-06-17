@@ -3,8 +3,8 @@
 このファイルは、このフォルダを Claude Code で開いた Claude への指示書です。
 **ここに書かれたルールは既定の挙動より優先します。必ず守ってください。**
 
-> 仕様の正本は [SPEC.md](./SPEC.md)、使い方は [README.md](./README.md)。
-> このリポジトリは**配布専用（ダウンロード元）**。育成データはこのリポに push しません。
+> 使い方は [README.md](./README.md)。このフォルダは**配布物（ダウンロードして使う）**。
+> 育成データ（learnings・glossary・TM）はこのフォルダ内に貯まるが、配布元へは戻さない。
 
 ---
 
@@ -23,13 +23,15 @@
 
 1. **ルーター起動**: `translation-router` スキルを最初に使い、5問インタビュー（成果物の種類・忠実さ・制約・人間レビュー要否・機密度）でジャンルを判定する。
    - 成果物の種類は**利用者の明示選択**で決める。あなたが勝手にジャンルを推測して確定しない（「その他/わからない」のときだけ候補を提示し、決めるのは人）。
-2. **プロファイル実行**: 判定されたジャンルの子スキルで処理する。
+2. **過去訳の参照（TM）**: 訳し始める前に `translation-memory` スキルで `tm/tm.local.jsonl` を検索し、同じクライアント・同じ語句の過去訳があれば**それに合わせて一貫性を保つ**。
+3. **プロファイル実行**: 判定されたジャンルの子スキルで処理する。
    - 1 → `profile-audio-script`（音声台本）
    - 2 → `profile-editorial`（広報・読み物）
    - 3 → `profile-academic-grant`（学術・申請）
    - 4 → `profile-contract-legal`（契約・公文書）
-3. **共通ルール参照**: どのプロファイルでも [common/house-style.md](./common/house-style.md) を併せて適用する。
-4. **セッション終了時**: `translation-improve` スキルを起動し、利用者の指摘をルール化するか差分で提案する（→ §3）。
+4. **共通ルール参照**: どのプロファイルでも [common/house-style.md](./common/house-style.md) を併せて適用する。
+5. **確定後**: 利用者の同意を得て、確定した原文→訳文の対を `translation-memory` で `tm/tm.local.jsonl` に追記する（ローカル限定であることを明示）。
+6. **セッション終了時**: `translation-improve` スキルを起動し、利用者の指摘をルール化するか差分で提案する（→ §3）。
 
 ---
 
@@ -39,6 +41,7 @@
    `learnings.md` / `glossary/` / メモに書き出すときは、固有名詞を匿名トークンへ置換する（[common/house-style.md](./common/house-style.md) §1）。
    - クライアント名 → `<CLIENT_A>`、製品名 → `<PRODUCT_X>`、個人名 → `<PERSON_1>`、未公開情報 → `<CONF_n>`
 2. **配布専用リポなので、育成データ（蓄積ルール・実用語・実ログ・原稿）をこのリポに push しない。** 育成は手元で行う。
+   - **翻訳メモリ（`tm/tm.local.jsonl`）は最高機密**。生の対訳データなのでマスキングせず保存するが、**ローカル限定。絶対に公開・共有しない**（`.gitignore` 済み）。追記時は保存先がローカルであることを利用者に明示する。
 3. `git` に乗せる前に、機密が混じっていないか必ず差分を見せて利用者に確認する。`.gitignore` は多重に防御しているが、最後の砦は人の目視。
 4. 機密度タグが「機密」の案件は、記録時マスキングを既定で必須にする。
 
@@ -79,11 +82,12 @@
 
 ## 6. ファイルマップ
 
-- `SPEC.md` — 設計の正本
 - `.claude/skills/translation-router/` — 入口（最初に起動）
 - `.claude/skills/profile-*/` — ジャンル別処理
 - `.claude/skills/translation-improve/` — 改善ループ
+- `.claude/skills/translation-memory/` — 翻訳メモリ（過去訳の参照・追記）
 - `common/house-style.md` — 横断ルール・機密マスキング
 - `improvement/learnings.md` — 指摘ログ（承認待ち＋確定ルール）
 - `glossary/` — 用語集（実用語は手元のみ・git追跡外）
+- `tm/` — 翻訳メモリ（対訳。実データ `tm.local.jsonl` は手元のみ・git追跡外）
 - `tools/ADOPTION.md` — 外部ツールの採用判定と安全性
