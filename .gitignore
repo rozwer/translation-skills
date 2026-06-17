@@ -79,6 +79,8 @@ api-keys*
 /.claude/*
 !/.claude/skills/
 !/.claude/skills/**
+!/.claude/commands/
+!/.claude/commands/**
 
 # グローバル ~/.gitignore_global が CLAUDE.md も無視している。
 # CLAUDE.md は配布物の運用規範なので明示的に再包含する。
