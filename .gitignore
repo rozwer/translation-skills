@@ -80,6 +80,10 @@ api-keys*
 !/.claude/skills/
 !/.claude/skills/**
 
+# グローバル ~/.gitignore_global が CLAUDE.md も無視している。
+# CLAUDE.md は配布物の運用規範なので明示的に再包含する。
+!/CLAUDE.md
+
 # ---- 7) 外部ツールの依存物（インストール成果物。ソースは vendoring 可）----
 node_modules/
 .venv/
