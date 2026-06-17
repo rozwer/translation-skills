@@ -46,12 +46,15 @@ glossary/_realnames*
 **/*real-names*
 **/*realnames*
 
-# ---- 3) learnings の生ログ（マスキング前 / §3.5・§4）----
+# ---- 3) learnings の生ログ・ルーターログ（マスキング前 / §3.5・§4）----
 # 承認・マスキング前の指摘には固有名詞が残りうる。
-# 確定版 improvement/learnings.md（匿名化済み）のみ追跡する。
+# 確定版 improvement/learnings.md（匿名化済み）と *.template のみ追跡する。
 improvement/intake/
 improvement/*.raw.md
 improvement/*.draft.md
+# ルーターの実ログ。プロファイル/機密度/メモを含み、public では公開しない。
+# スキーマ説明用の router-log.jsonl.template だけを追跡する。
+improvement/router-log.jsonl
 
 # ---- 4) 検出器の生結果（原稿本文を含みうる / §6）----
 tools/detect/results/
@@ -86,7 +89,15 @@ __pycache__/
 .npm/
 package-lock.json.local
 
-# ---- 8) OS / エディタのゴミ ----
+# ---- 8) public 公開時の方針（会社が育てた中身は手元に残す）----
+# 本リポジトリは public（枠組みをHTTPでDL可能にする目的）。
+# glossary の実用語はマスキング済みでも会社の競争資産なので公開しない。
+# README と .gitkeep だけ追跡し、実際の用語ファイルは手元に残す。
+glossary/*
+!glossary/README.md
+!glossary/.gitkeep
+
+# ---- 9) OS / エディタのゴミ ----
 .DS_Store
 Thumbs.db
 *.swp
